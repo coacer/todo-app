@@ -8,16 +8,16 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +11 src/App.tsx
-badd +19 src/pages/todos/index.tsx
+badd +27 src/pages/todos/index.tsx
 badd +1 src/pages/todos/new.tsx
 badd +7 src/components/layouts/Header.tsx
 badd +5 src/components/layouts/Footer.tsx
-badd +10 src/interfaces/index.ts
+badd +15 src/interfaces/index.ts
 badd +2 src/store/actions/types.ts
-badd +26 src/store/actions/todos.ts
-badd +4 src/store/reducers/index.ts
-badd +2 src/store/index.ts
-badd +13 src/store/reducers/todos.ts
+badd +78 src/store/actions/todos.ts
+badd +6 src/store/reducers/index.ts
+badd +7 src/store/index.ts
+badd +17 src/store/reducers/todos.ts
 argglobal
 %argdel
 edit src/pages/todos/index.tsx
@@ -45,15 +45,15 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 26 - ((25 * winheight(0) + 18) / 36)
+let s:l = 24 - ((23 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-26
-normal! 0
+24
+normal! 07|
 wincmd w
 argglobal
-if bufexists("src/interfaces/index.ts") | buffer src/interfaces/index.ts | else | edit src/interfaces/index.ts | endif
+if bufexists("src/store/actions/todos.ts") | buffer src/store/actions/todos.ts | else | edit src/store/actions/todos.ts | endif
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -63,13 +63,14 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 5 - ((4 * winheight(0) + 18) / 36)
+let s:l = 76 - ((15 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-5
-normal! 0
+76
+normal! 03|
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 102 + 102) / 204)
 exe 'vert 2resize ' . ((&columns * 101 + 102) / 204)
 tabnext 1

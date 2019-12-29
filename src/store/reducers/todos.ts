@@ -15,13 +15,24 @@ const todoReducer = (state = initialState, action: TodosAction): Todo[] => {
   switch(action.type) {
     case FETCH:
       return [...state, ...action.payload];
+
     // case ADD:
     //   return;
+
     case DEL:
       const filterTodos: Todo[] = state.filter((todo: Todo) => todo.id !== action.payload);
       return filterTodos;
-    // case CHECK:
-    //   return;
+
+    case CHECK:
+      const checkedTodos: Todo[] = state.map(
+        (todo: Todo): Todo => {
+          if (todo.id === action.payload) {
+            todo.completed = !todo.completed ? true : false;
+          }
+          return todo;
+        });
+      return checkedTodos;
+
     default:
       return state;
   }

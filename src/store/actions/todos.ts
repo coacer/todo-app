@@ -66,9 +66,13 @@ export const fetchTodos = (): ThunkAction<
   };
 
 // todoを削除
-export const delTodo = (id: number): DelTodoAction => (
-  {
-    type: ActionTypes.DEL_TODO,
-    payload: id
-  }
-);
+export const delTodo = (id: number): DelTodoAction => ({
+  type: ActionTypes.DEL_TODO,
+  payload: id
+});
+
+// todoチェック
+export const checkTodo = (id: number): CheckTodoAction => ({
+  type: ActionTypes.CHECK_TODO,
+  payload: id
+});
