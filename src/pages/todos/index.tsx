@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { RootState } from "store/reducers";
+import { RootState } from "interfaces";
 import { fetchTodos } from "store/actions/todos";
 import { Todo } from "interfaces";
 

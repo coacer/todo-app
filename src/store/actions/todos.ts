@@ -13,15 +13,29 @@ interface FetchTodosAction extends Action {
 }
 
 // addTodoを呼び出す際に渡すactionの型
-
+interface AddTodoAction extends Action {
+  type: ActionTypes.ADD_TODO;
+  payload: Todo;
+}
 
 // delTodoを呼び出す際に渡すactionの型
-
+interface DelTodoAction extends Action {
+  type: ActionTypes.DEL_TODO;
+  payload: number;
+}
 
 // checkTodoを呼び出す際に渡すactionの型
+interface CheckTodoAction extends Action {
+  type: ActionTypes.CHECK_TODO;
+  payload: number;
+}
 
 // fetchTodo, addTodo, delTodo, checkTodoを呼び出す際に渡すactionの型いずれか
-export type TodosAction = FetchTodosAction;
+export type TodosAction =
+  | FetchTodosAction
+  | AddTodoAction
+  | DelTodoAction
+  | CheckTodoAction;
 
 export const fetchTodos = (): ThunkAction<
     void, // dispatchの戻り値の型
