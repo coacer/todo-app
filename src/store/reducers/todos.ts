@@ -2,19 +2,26 @@ import { Todo } from "interfaces";
 import { TodosAction } from "../actions/todos";
 import { ActionTypes } from "../actions/types";
 
-const { FETCH_TODOS, ADD_TODO, DEL_TODO, CHECK_TODO } = ActionTypes;
+const {
+  FETCH_TODOS: FETCH,
+  ADD_TODO: ADD,
+  DEL_TODO: DEL,
+  CHECK_TODO: CHECK,
+} = ActionTypes;
 const initialState: Todo[] = [];
 
+// stateは上のinitialStateで型推論されるため型指定不要(多分)
 const todoReducer = (state = initialState, action: TodosAction): Todo[] => {
   switch(action.type) {
-    case FETCH_TODOS:
+    case FETCH:
       return [...state, ...action.payload];
-      // case ADD_TODO:
-      //   return;
-      // case DEL_TODO:
-      //   return;
-      // case CHECK_TODO:
-      //   return;
+    // case ADD:
+    //   return;
+    case DEL:
+      const filterTodos: Todo[] = state.filter((todo: Todo) => todo.id !== action.payload);
+      return filterTodos;
+    // case CHECK:
+    //   return;
     default:
       return state;
   }

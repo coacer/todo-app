@@ -1,8 +1,8 @@
 import { Action, Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
 import axios from "axios";
-import { ActionTypes } from "./types";
 
+import { ActionTypes } from "./types";
 import { Todo } from "interfaces";
 
 
@@ -37,6 +37,10 @@ export type TodosAction =
   | DelTodoAction
   | CheckTodoAction;
 
+
+// ====== Action Creators ======
+
+// todosをフェッチ
 export const fetchTodos = (): ThunkAction<
     void, // dispatchの戻り値の型
     Todo[], // stateの型
@@ -60,3 +64,11 @@ export const fetchTodos = (): ThunkAction<
     });
 
   };
+
+// todoを削除
+export const delTodo = (id: number): DelTodoAction => (
+  {
+    type: ActionTypes.DEL_TODO,
+    payload: id
+  }
+);
