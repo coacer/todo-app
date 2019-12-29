@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { RootState } from "interfaces";
@@ -8,12 +8,16 @@ import { Todo } from "interfaces";
 const todosSelector = (state: RootState) => state.todos;
 
 const TodosIndex: React.FC = () => {
-  const todos = useSelector(todosSelector);
-  const dispatch = useDispatch();
+  const [isFilterTodos, setIsFilterTodos] = useState(false);
 
-  // dom生成/更新時にtodosがゼロだったらフェッチ
+  const allTodos = useSelector(todosSelector);
+  const dispatch = useDispatch();
+  const filterTodos = allTodos.filter((todo: Todo) => !todo.completed);
+  const todos = isFilterTodos ? filterTodos : allTodos;
+
+  // dom生成/更新時にallTodosがゼロだったらフェッチ
   useEffect((): void => {
-    if (todos.length > 0) return;
+    if (allTodos.length > 0) return;
     dispatch(fetchTodos());
   });
 
@@ -40,9 +44,22 @@ const TodosIndex: React.FC = () => {
   ));
 
   return (
-    <ul>
-      {todosElements}
-    </ul>
+    <>
+      <input
+        type="radio"
+        checked={!isFilterTodos}
+        onChange={() => setIsFilterTodos(false)}
+      /> All
+      <br />
+      <input
+        type="radio"
+        checked={isFilterTodos}
+        onChange={() => setIsFilterTodos(true)}
+      /> Not Completed
+      <ul>
+        {todosElements}
+      </ul>
+    </>
   );
 };
 
