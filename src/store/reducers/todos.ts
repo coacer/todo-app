@@ -1,6 +1,6 @@
 import { Todo } from "interfaces";
 import { TodosAction } from "../actions/todos";
-import { ActionTypes } from "../actions/types";
+import { ActionTypes } from "../actions/todos";
 
 const {
   FETCH_TODOS: FETCH,

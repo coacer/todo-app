@@ -2,9 +2,14 @@ import { Action, Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
 import axios from "axios";
 
-import { ActionTypes } from "./types";
 import { Todo } from "interfaces";
 
+export enum ActionTypes {
+  FETCH_TODOS = "FETCH_TODOS",
+  ADD_TODO = "ADD_TODO",
+  DEL_TODO = "DEL_TODO",
+  CHECK_TODO = "CHECK_TODO",
+}
 
 // fetchTodosを呼び出す際に渡すactionの型
 interface FetchTodosAction extends Action {
@@ -49,20 +54,26 @@ export const fetchTodos = (): ThunkAction<
   > => async (
     dispatch: Dispatch<FetchTodosAction> // <>にactionの型
   ): Promise<FetchTodosAction> => { // <>promise処理内の返り値
-    const { data } = await axios.get('todos');
+    try {
+      const { data } = await axios.get('todos');
 
-    // APIに含まれてる不要なデータ(userId)を除去
-    const todos = data.map((todo: Todo & { userId: number }): Todo => ({
-      id: todo.id,
-      title: todo.title,
-      completed: todo.completed,
-    }));
+      // APIに含まれてる不要なデータ(userId)を除去
+      const todos = data.map((todo: Todo & { userId: number }): Todo => ({
+        id: todo.id,
+        title: todo.title,
+        completed: todo.completed,
+      }));
 
-    return dispatch({
-      type: ActionTypes.FETCH_TODOS,
-      payload: todos
-    });
-
+      return dispatch({
+        type: ActionTypes.FETCH_TODOS,
+        payload: todos
+      });
+    } catch(e) {
+      return dispatch({
+        type: ActionTypes.FETCH_TODOS,
+        payload: []
+      });
+    }
   };
 
 // todoを削除
