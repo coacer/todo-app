@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Checkbox, Radio, Button } from '@material-ui/core';
+import { Checkbox, Radio, Button, CircularProgress } from '@material-ui/core';
 
 import { RootState } from "interfaces";
 import { fetchTodos, delTodo, checkTodo } from "store/actions/todos";
@@ -10,6 +10,7 @@ const todosSelector = (state: RootState) => state.todos;
 
 const TodosIndex: React.FC = () => {
   const [isFilterTodos, setIsFilterTodos] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const allTodos = useSelector(todosSelector);
   const dispatch = useDispatch();
@@ -29,8 +30,18 @@ const TodosIndex: React.FC = () => {
 
   // checkboxハンドラ
   const handleChangeCheckbox = useCallback((id: number) => (): void => {
+    setIsLoading(true);
     dispatch(checkTodo(id));
+    setIsLoading(false);
   }, [dispatch]);
+
+  const handleChangeToggleFilter = useCallback((): void => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsFilterTodos(!isFilterTodos);
+      setIsLoading(false);
+    }, 1000);
+  }, [isFilterTodos]);
 
   const todosElements: React.ReactElement[] = todos.map((todo: Todo) => (
     <li
@@ -59,17 +70,17 @@ const TodosIndex: React.FC = () => {
     <>
       <Radio
         checked={!isFilterTodos}
-        onChange={() => setIsFilterTodos(false)}
+        onChange={handleChangeToggleFilter}
       />
       All
       <br />
       <Radio
         checked={isFilterTodos}
-        onChange={() => setIsFilterTodos(true)}
+        onChange={handleChangeToggleFilter}
       />
       Not Completed
       <ul>
-        {todosElements}
+        {isLoading ? <CircularProgress /> : todosElements}
       </ul>
     </>
   );
