@@ -74,7 +74,7 @@ export const fetchTodos = (): ThunkAction<
       });
 
       return dispatch({
-        type: LoadActionTypes.REQUEST
+        type: LoadActionTypes.SUCCESS
       });
 
     } catch(e) {
@@ -84,7 +84,7 @@ export const fetchTodos = (): ThunkAction<
       });
 
       return dispatch({
-        type: LoadActionTypes.REQUEST
+        type: LoadActionTypes.SUCCESS
       });
     }
   };

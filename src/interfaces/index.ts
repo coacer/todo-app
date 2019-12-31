@@ -14,6 +14,4 @@ export interface Todo {
 }
 
 // rootState
-export type RootState = CombinedState<{ todos: Todo[]; }>
-
-// todoState
+export type RootState = CombinedState<{ todos: Todo[], load: boolean; }>

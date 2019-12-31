@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Radio, CircularProgress } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 
 import { RootState } from "interfaces";
 import { fetchTodos } from "store/actions/todos";
