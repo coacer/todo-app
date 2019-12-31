@@ -3,6 +3,7 @@ import { ThunkAction } from "redux-thunk";
 import axios from "axios";
 
 import { Todo } from "interfaces";
+import { ActionTypes as LoadActionTypes, LoadAction } from "./load";
 
 export enum ActionTypes {
   FETCH_TODOS = "FETCH_TODOS",
@@ -52,9 +53,12 @@ export const fetchTodos = (): ThunkAction<
     undefined, // dispatchとgetStateの他にもう一つ取れる引数の型
     FetchTodosAction // actionの型
   > => async (
-    dispatch: Dispatch<FetchTodosAction> // <>にactionの型
-  ): Promise<FetchTodosAction> => { // <>promise処理内の返り値
+    dispatch: Dispatch<FetchTodosAction | LoadAction> // <>にactionの型
+  ): Promise<LoadAction> => { // <>promise処理内の返り値
     try {
+      dispatch({
+        type: LoadActionTypes.REQUEST
+      });
       const { data } = await axios.get('todos');
 
       // APIに含まれてる不要なデータ(userId)を除去
@@ -64,14 +68,23 @@ export const fetchTodos = (): ThunkAction<
         completed: todo.completed,
       }));
 
-      return dispatch({
+      dispatch({
         type: ActionTypes.FETCH_TODOS,
         payload: todos
       });
-    } catch(e) {
+
       return dispatch({
+        type: LoadActionTypes.REQUEST
+      });
+
+    } catch(e) {
+      dispatch({
         type: ActionTypes.FETCH_TODOS,
         payload: []
+      });
+
+      return dispatch({
+        type: LoadActionTypes.REQUEST
       });
     }
   };
