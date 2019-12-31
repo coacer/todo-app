@@ -7,64 +7,22 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +11 src/App.tsx
-badd +5 src/pages/todos/index.tsx
-badd +1 src/pages/todos/new.tsx
-badd +7 src/components/layouts/Header.tsx
-badd +5 src/components/layouts/Footer.tsx
-badd +15 src/interfaces/index.ts
-badd +2 src/store/actions/types.ts
-badd +67 src/store/actions/todos.ts
-badd +6 src/store/reducers/index.ts
-badd +7 src/store/index.ts
-badd +31 src/store/reducers/todos.ts
-badd +3 src/App.css
-badd +0 src/App.test.tsx
-badd +0 src/components
-badd +0 src/components/layouts
-badd +0 src/index.css
-badd +0 src/index.tsx
-badd +0 src/interfaces
-badd +0 src/logo.svg
-badd +0 src/pages
-badd +0 src/pages/todos
-badd +0 src/react-app-env.d.ts
-badd +0 src/serviceWorker.ts
-badd +0 src/setupTests.ts
-badd +0 src/store
-badd +0 src/store/actions
-badd +0 src/store/reducers
+badd +68 src/store/actions/todos.ts
+badd +2 src/store/reducers/load.ts
+badd +10 src/store/reducers/todos.ts
+badd +19 src/store/actions/load.ts
 argglobal
 %argdel
-$argadd src/App.css
-$argadd src/App.test.tsx
-$argadd src/App.tsx
-$argadd src/components
-$argadd src/components/layouts
-$argadd src/components/layouts/Footer.tsx
-$argadd src/components/layouts/Header.tsx
-$argadd src/index.css
-$argadd src/index.tsx
-$argadd src/interfaces
-$argadd src/interfaces/index.ts
-$argadd src/logo.svg
-$argadd src/pages
-$argadd src/pages/todos
-$argadd src/pages/todos/index.tsx
-$argadd src/pages/todos/new.tsx
-$argadd src/react-app-env.d.ts
-$argadd src/serviceWorker.ts
-$argadd src/setupTests.ts
-$argadd src/store
-$argadd src/store/actions
-$argadd src/store/actions/todos.ts
-$argadd src/store/actions/types.ts
-$argadd src/store/index.ts
-$argadd src/store/reducers
-$argadd src/store/reducers/index.ts
-$argadd src/store/reducers/todos.ts
-edit src/components/layouts/Footer.tsx
+edit src/store/actions/todos.ts
 set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
@@ -72,8 +30,12 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
+exe '1resize ' . ((&lines * 27 + 29) / 58)
+exe 'vert 1resize ' . ((&columns * 102 + 102) / 204)
+exe '2resize ' . ((&lines * 26 + 29) / 58)
+exe 'vert 2resize ' . ((&columns * 102 + 102) / 204)
+exe 'vert 3resize ' . ((&columns * 101 + 102) / 204)
 argglobal
-if bufexists("src/components/layouts/Footer.tsx") | buffer src/components/layouts/Footer.tsx | else | edit src/components/layouts/Footer.tsx | endif
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -83,12 +45,54 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 9 - ((8 * winheight(0) + 18) / 36)
+let s:l = 38 - ((2 * winheight(0) + 13) / 27)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-9
+38
 normal! 0
+wincmd w
+argglobal
+if bufexists("src/store/actions/load.ts") | buffer src/store/actions/load.ts | else | edit src/store/actions/load.ts | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 19 - ((18 * winheight(0) + 13) / 26)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+19
+normal! 03|
+wincmd w
+argglobal
+if bufexists("src/store/reducers/load.ts") | buffer src/store/reducers/load.ts | else | edit src/store/reducers/load.ts | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 2 - ((1 * winheight(0) + 27) / 54)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+2
+normal! 027|
+wincmd w
+exe '1resize ' . ((&lines * 27 + 29) / 58)
+exe 'vert 1resize ' . ((&columns * 102 + 102) / 204)
+exe '2resize ' . ((&lines * 26 + 29) / 58)
+exe 'vert 2resize ' . ((&columns * 102 + 102) / 204)
+exe 'vert 3resize ' . ((&columns * 101 + 102) / 204)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
