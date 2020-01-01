@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 
 import TodoItem, { TodoItemProps } from "../";
 import { Checkbox, Button } from '@material-ui/core';
@@ -33,18 +33,19 @@ describe('<TodoItem />', () => {
     }
   };
 
-  it('display informations of todo', () => {
+  it('displays informations of todo', () => {
 
     // shallowでコンポーネントをレンダリング
     // shallowは子コンポーネントをレンダリングしない
     // 逆にmountはレンダリングする
-    const wrapper = shallow(<TodoItem {...props} />);
+    const wrapper = mount(<TodoItem {...props} />);
 
-    expect(wrapper.find(".todo-id").text()).toBe("1");
-    expect(wrapper.find(".todo-title").text()).toBe("Jestとenzymeを勉強する");
+    expect(wrapper.find('.todo-id').text()).toBe('1');
+    expect(wrapper.find('.todo-title').text()).toBe('Jestとenzymeを勉強する');
+    expect(wrapper.find('input[type="checkbox"][checked]').length).toBe(1)
   });
 
-  it('display components', () => {
+  it('displays components', () => {
     const wrapper = shallow(<TodoItem {...props} />);
     // shallowでレンダリングしてるためfindで子コンポーネントを直接指定できる
     // mountの場合は再帰的に全てレンダリングされるため, 実際に描画される要素をする('button'とか)
