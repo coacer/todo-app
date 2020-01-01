@@ -1,6 +1,6 @@
 import React from "react";
-import {Link} from "react-router-dom";
-import {NavList} from "interfaces";
+import { Link } from "react-router-dom";
+import { NavList } from "interfaces";
 
 const Header: React.FC = () => {
   const navList: NavList[] = [
