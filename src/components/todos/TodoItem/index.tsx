@@ -9,6 +9,8 @@ interface Props {
   todo: Todo;
 }
 
+export type TodoItemProps = Props;
+
 const TodoItem: React.FC<Props> = ({ todo }) => {
 
   const dispatch = useDispatch();
@@ -33,7 +35,12 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
         onChange={handleChangeCheckbox(todo.id)}
         value="primary"
       />
-      {todo.id} / {todo.title}
+      <span className="todo-id">
+        {todo.id}
+      </span>:
+      <span className="todo-title">
+        {todo.title}
+      </span>
       <Button
         variant="outlined"
         color="secondary"
