@@ -3,7 +3,7 @@ import { ThunkAction } from "redux-thunk";
 import axios from "axios";
 
 import { Todo } from "interfaces";
-import { ActionTypes as LoadActionTypes, LoadAction } from "./load";
+import { ActionTypes as LoadActionTypes, LoadAction } from "../load";
 
 export enum ActionTypes {
   FETCH_TODOS = "FETCH_TODOS",
