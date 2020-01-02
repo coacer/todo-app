@@ -1,12 +1,10 @@
-import { ThunkAction } from "redux-thunk";
 import axios from "axios";
 import createMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
-import { ActionTypes as TodosActionTypes } from "../../todos";
-import { ActionTypes as LoadActionTypes } from "../../load";
-import { Todo } from "interfaces";
+import { ActionTypes as LoadActionTypes, LoadAction } from "../../load";
 import {
+  ActionTypes as TodosActionTypes,
   fetchTodos,
   FetchTodosAction,
   delTodo,
@@ -43,7 +41,7 @@ describe('Todos Action Creator', () => {
     ];
     mockedAxios.get.mockResolvedValue({ data: dammyTodos });
 
-    const expectedActions = [
+    const expectedActions: (LoadAction | FetchTodosAction)[] = [
       { type:  LoadActionTypes.REQUEST },
       { type: TodosActionTypes.FETCH_TODOS, payload: dammyTodos },
       { type:  LoadActionTypes.SUCCESS },
