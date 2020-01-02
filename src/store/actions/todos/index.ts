@@ -13,7 +13,7 @@ export enum ActionTypes {
 }
 
 // fetchTodosを呼び出す際に渡すactionの型
-interface FetchTodosAction extends Action {
+export interface FetchTodosAction extends Action {
   type: ActionTypes.FETCH_TODOS;
   payload: Todo[];
 }
@@ -25,13 +25,13 @@ interface AddTodoAction extends Action {
 }
 
 // delTodoを呼び出す際に渡すactionの型
-interface DelTodoAction extends Action {
+export interface DelTodoAction extends Action {
   type: ActionTypes.DEL_TODO;
   payload: number;
 }
 
 // checkTodoを呼び出す際に渡すactionの型
-interface CheckTodoAction extends Action {
+export interface CheckTodoAction extends Action {
   type: ActionTypes.CHECK_TODO;
   payload: number;
 }
