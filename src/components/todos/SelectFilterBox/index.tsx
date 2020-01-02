@@ -6,18 +6,22 @@ interface Props {
   onChange: () => void;
 }
 
+export type SelectFilterBoxProps = Props;
+
 const SelectFilterBox: React.FC<Props> = ({ isFilter, onChange }) => {
   return (
     <>
       <Radio
         checked={!isFilter}
         onChange={onChange}
+        className="not-filter-radio"
       />
       All
       <br />
       <Radio
         checked={isFilter}
         onChange={onChange}
+        className="filter-radio"
       />
       Not Completed
     </>
