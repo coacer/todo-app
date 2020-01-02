@@ -18,7 +18,7 @@ describe('<TodoList />', () => {
         completed: false
       },
       {
-        id: 1,
+        id: 3,
         title: "hogehogeする",
         completed: true
       },
@@ -27,7 +27,7 @@ describe('<TodoList />', () => {
 
   it('displays three TodoItem components', () => {
     const wrapper: ShallowWrapper<TodoListProps, undefined> = shallow(<TodoList {...props} />);
-    expect(wrapper.find(TodoItem).length).toBe(3);
+    expect(wrapper.find(TodoItem).length).toBe(props.todos.length);
   });
 
 });
