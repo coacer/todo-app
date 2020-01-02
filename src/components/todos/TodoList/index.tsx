@@ -7,12 +7,15 @@ interface Props {
   todos: Todo[];
 }
 
+export type TodoListProps = Props;
+
 const TodoList: React.FC<Props> = ({ todos }) => {
   return (
     <>
       {todos.map((todo: Todo) => (
         <TodoItem
-        todo={todo}
+          todo={todo}
+          key={todo.id}
         />
       ))}
     </>

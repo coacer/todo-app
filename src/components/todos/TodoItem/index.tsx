@@ -27,7 +27,6 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
 
   return(
     <li
-      key={todo.id}
       style={{ listStyle: "none" }}
     >
       <Checkbox
