@@ -7,22 +7,13 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +44 src/components/todos/TodoItem/__test__/index.spec.tsx
-badd +29 src/components/todos/TodoItem/index.tsx
-badd +19 src/components/todos/TodoList/index.tsx
-badd +23 src/components/todos/TodoList/__test__/index.spec.tsx
-badd +399 node_modules/@types/enzyme/index.d.ts
-badd +6 src/components/todos/SelectFilterBox/index.tsx
-badd +10 src/components/todos/SelectFilterBox/__test__/index.spec.tsx
-badd +41 src/pages/todos/index.tsx
-badd +1 src/components/layouts/Header/index.tsx
-badd +15 src/App.tsx
-badd +15 src/components/layouts/Header/__test__/index.spec.tsx
-badd +14 ~/dev/practice/js/React/todo-app/src/store/actions/todos/index.ts
-badd +1 src/store/actions/actionTypes.spec.ts
+badd +1 src/store/reducers/todos/index.ts
+badd +11 src/store/reducers/todos/__test__/index.spec.ts
+badd +55 src/store/actions/todos/index.ts
+badd +56 src/store/actions/todos/__test__/index.spec.ts
 argglobal
 %argdel
-edit src/store/actions/actionTypes.spec.ts
+edit src/store/actions/todos/index.ts
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -37,8 +28,6 @@ set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 102 + 102) / 204)
 exe 'vert 2resize ' . ((&columns * 101 + 102) / 204)
-exe '3resize ' . ((&lines * 2 + 20) / 40)
-exe 'vert 3resize ' . ((&columns * 80 + 102) / 204)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -49,15 +38,15 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 18) / 36)
+let s:l = 50 - ((10 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+50
+normal! 027|
 wincmd w
 argglobal
-if bufexists("src/components/layouts/Header/__test__/index.spec.tsx") | buffer src/components/layouts/Header/__test__/index.spec.tsx | else | edit src/components/layouts/Header/__test__/index.spec.tsx | endif
+if bufexists("src/store/reducers/todos/__test__/index.spec.ts") | buffer src/store/reducers/todos/__test__/index.spec.ts | else | edit src/store/reducers/todos/__test__/index.spec.ts | endif
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -67,28 +56,16 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 9 - ((8 * winheight(0) + 18) / 36)
+let s:l = 11 - ((10 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-9
-normal! 018|
+11
+normal! 037|
 wincmd w
-argglobal
-enew
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 102 + 102) / 204)
 exe 'vert 2resize ' . ((&columns * 101 + 102) / 204)
-exe '3resize ' . ((&lines * 2 + 20) / 40)
-exe 'vert 3resize ' . ((&columns * 80 + 102) / 204)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
