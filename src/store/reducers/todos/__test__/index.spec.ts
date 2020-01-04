@@ -2,6 +2,7 @@ import sinon from "sinon";
 import reducer from "..";
 import {
   ActionTypes,
+  FetchTodosAction,
   delTodo,
   checkTodo,
   DelTodoAction,
@@ -11,7 +12,30 @@ import { Todo } from "interfaces";
 
 describe('todoReducers', () => {
 
+  // 良い書き方
   it('can fetch todos', () => {
+    const initialState: Todo[] = [];
+    const expectState: Todo[] = [
+      {
+        id: 1,
+        title: "hoge",
+        completed: false
+      },
+      {
+        id: 2,
+        title: "foo",
+        completed: true
+      },
+    ];
+
+    // dispatchのように振る舞う関数定義
+    const dispatchFake = (action: FetchTodosAction) => reducer(initialState, action);
+    const resultState = dispatchFake({ type: ActionTypes.FETCH_TODOS, payload: expectState });
+    expect(resultState).toEqual(expectState);
+  });
+
+  // あんま良くないテストの書き方だけどスタブを使う練習
+  it('can fetch todos(bad test)', () => {
     const initialState: Todo[] = [];
     const expectState: Todo[] = [
       {
