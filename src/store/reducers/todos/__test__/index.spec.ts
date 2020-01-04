@@ -25,6 +25,7 @@ describe('todoReducers', () => {
         completed: true
       },
     ];
+    // fetchTodos関数のスタブ作成
     const fetchTodosStub = sinon.stub();
     fetchTodosStub
       .onCall(0)
@@ -33,6 +34,7 @@ describe('todoReducers', () => {
         payload: expectState
       });
 
+    // dispatchのように振る舞う関数定義
     const dispatchFake = (action) => reducer(initialState, action);
     const resultState = dispatchFake(fetchTodosStub());
     expect(resultState).toEqual(expectState);
