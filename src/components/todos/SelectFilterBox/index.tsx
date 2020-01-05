@@ -14,7 +14,7 @@ const SelectFilterBox: React.FC<Props> = ({ isFilter, onChange }) => {
       <Radio
         checked={!isFilter}
         onChange={onChange}
-        className="not-filter-radio"
+        className="unfilter-radio"
       />
       All
       <br />

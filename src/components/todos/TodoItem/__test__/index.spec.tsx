@@ -53,7 +53,7 @@ describe('<TodoItem />', () => {
     expect(wrapper.find(Checkbox).length).toBe(1);
   });
 
-  it('should dispatch be called when Button is clicked', () => {
+  it('should dispatch delTodo if Button is clicked', () => {
     const wrapper: ShallowWrapper<TodoItemProps, undefined> = shallow(<TodoItem {...props} />);
     // sinulateでイベント発火
     wrapper.find(Button).simulate('click');
@@ -62,7 +62,7 @@ describe('<TodoItem />', () => {
     expect(mockDispatch).toHaveBeenCalledWith(delTodo(props.todo.id));
   });
 
-  it('should dispatch be called when Checkbox is changed', () => {
+  it('should dispatch checkTodo if Checkbox is changed', () => {
     const wrapper: ShallowWrapper<TodoItemProps, undefined> = shallow(<TodoItem {...props} />);
     // sinulateでイベント発火
     wrapper.find(Checkbox).simulate('change');

@@ -23,14 +23,14 @@ describe('<SelectFilterBox />', () => {
 
   // jestにもcontextはあるらしいがプラグインを導入する必要があるため、だるいからdescribeで場合分けした
   describe('when isFilter flag is true', () => {
-    it('should ".filter-radio" is checked and ".not-filter-radio" is not', () => {
+    it('should ".filter-radio" is checked and ".unfilter-radio" is not', () => {
       const wrapper: ShallowWrapper<
         SelectFilterBoxProps
       > = shallow(<SelectFilterBox {...props} isFilter={true} />);
 
       expect(wrapper.find(Radio).length).toBe(2);
       expect(wrapper.find('.filter-radio').props().checked).toBeTruthy();
-      expect(wrapper.find('.not-filter-radio').props().checked).toBeFalsy();
+      expect(wrapper.find('.unfilter-radio').props().checked).toBeFalsy();
     });
 
     it('should be called onChange if clicked', () => {
@@ -38,7 +38,7 @@ describe('<SelectFilterBox />', () => {
         SelectFilterBoxProps
       > = shallow(<SelectFilterBox {...props} isFilter={true} />);
 
-      const notFilterRadio = wrapper.find('.not-filter-radio');
+      const notFilterRadio = wrapper.find('.unfilter-radio');
 
       expect(notFilterRadio.props().checked).toBeFalsy();
       notFilterRadio.simulate('change');
@@ -49,13 +49,13 @@ describe('<SelectFilterBox />', () => {
 
   describe('when isFilter flag is false', () => {
 
-    it('should ".not-filter-radio" is checked and ".filter-radio" is not', () => {
+    it('should ".unfilter-radio" is checked and ".filter-radio" is not', () => {
       const wrapper: ShallowWrapper<
         SelectFilterBoxProps
       > = shallow(<SelectFilterBox {...props} isFilter={false} />);
 
       expect(wrapper.find(Radio).length).toBe(2);
-      expect(wrapper.find('.not-filter-radio').props().checked).toBeTruthy();
+      expect(wrapper.find('.unfilter-radio').props().checked).toBeTruthy();
       expect(wrapper.find('.filter-radio').props().checked).toBeFalsy();
     });
 
