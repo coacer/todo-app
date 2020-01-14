@@ -22,7 +22,7 @@ services:
   #     - db
   #
   front:
-    build: .
+    build: ./front
     environment:
       NODE_ENV: development
     tty: true
@@ -31,5 +31,5 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - .:/app
+      - ./front:/app
 
