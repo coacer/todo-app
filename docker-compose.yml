@@ -8,19 +8,19 @@ services:
   #   ports:
   #     - "3306:3306"
   #
-  # back:
-  #   image: coacer/express
-  #   environment:
-  #     NODE_ENV: development
-  #   tty: true
-  #   command: npm start
-  #   ports:
-  #     - '8080:3000'
-  #   volumes:
-  #     - ./back:/app
-  #   depends_on:
-  #     - db
-  #
+  back:
+    build: ./back
+    environment:
+      NODE_ENV: development
+    tty: true
+    command: npm start
+    ports:
+      - '8080:3000'
+    volumes:
+      - ./back:/app
+    # depends_on:
+    #   - db
+
   front:
     build: ./front
     environment:
