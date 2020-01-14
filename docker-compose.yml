@@ -1,0 +1,35 @@
+version: '3'
+services:
+  # db:
+  #   image: mysql:5.7
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: password
+  #     MYSQL_DATABASE: root
+  #   ports:
+  #     - "3306:3306"
+  #
+  # back:
+  #   image: coacer/express
+  #   environment:
+  #     NODE_ENV: development
+  #   tty: true
+  #   command: npm start
+  #   ports:
+  #     - '8080:3000'
+  #   volumes:
+  #     - ./back:/app
+  #   depends_on:
+  #     - db
+  #
+  front:
+    build: .
+    environment:
+      NODE_ENV: development
+    tty: true
+    # コンテナ起動時のコマンド
+    command: npm start
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+
