@@ -1,13 +1,13 @@
 version: '3'
 services:
-  # db:
-  #   image: mysql:5.7
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: password
-  #     MYSQL_DATABASE: root
-  #   ports:
-  #     - "3306:3306"
-  #
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: root
+    ports:
+      - "3306:3306"
+
   back:
     build: ./back
     environment:
@@ -18,8 +18,8 @@ services:
       - '8080:3000'
     volumes:
       - ./back:/app
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
 
   front:
     build: ./front
