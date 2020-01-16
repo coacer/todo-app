@@ -24,7 +24,7 @@ const TodosIndex: React.FC = () => {
   useEffect((): void => {
     if (allTodos.length > 0) return;
     dispatch(fetchTodos());
-  });
+  }, []);
 
   const handleChangeToggleFilter = useCallback((): void => {
     setIsLoading(true);

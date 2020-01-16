@@ -59,7 +59,7 @@ export const fetchTodos = (): ThunkAction<
       dispatch({
         type: LoadActionTypes.REQUEST
       });
-      const { data } = await axios.get('todos');
+      const { data } = await axios.get('/api/v1/todos');
 
       // APIに含まれてる不要なデータ(userId)を除去
       const todos = data.map((todo: Todo & { userId: number }): Todo => ({

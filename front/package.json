@@ -53,5 +53,5 @@
     "redux-mock-store": "^1.5.4",
     "sinon": "^8.0.2"
   },
-  "proxy": "https://jsonplaceholder.typicode.com"
+  "proxy": "http://back:3000"
 }
