@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as models from '../../db/models';
 const router = express.Router();
 
 interface Todo {
@@ -7,30 +8,8 @@ interface Todo {
   completed: boolean;
 }
 
-router.get('/todos', (req, res, next) => {
-  const todos: Todo[] = [
-    {
-      id: 1,
-      title: 'Expressでバックエンドを実装する',
-      completed: false,
-    },
-    {
-      id: 2,
-      title: '卒論資料の作成',
-      completed: false,
-    },
-    {
-      id: 3,
-      title: 'お酒を飲みまくる',
-      completed: false,
-    },
-    {
-      id: 4,
-      title: '筋トレをする',
-      completed: false,
-    },
-  ];
-
+router.get('/todos', async (req, res, next) => {
+  const todos: Todo[] = await models.Todo.findAll({});
   res.json(todos);
 });
 
