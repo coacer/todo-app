@@ -1,7 +1,10 @@
-import * as express from "express";
+import * as express from 'express';
+import indexRouter from './routes';
+import todosRouter from './routes/todos';
 const app = express();
 const port = 3000;
 
-app.get("/", (req, res) => res.send("hello world"));
+app.use('/', indexRouter);
+app.use('/api/v1', todosRouter);
 
-app.listen(port, () => console.log("Running server..."));
+app.listen(port, () => console.log('Running server...'));
