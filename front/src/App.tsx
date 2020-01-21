@@ -16,10 +16,8 @@ const App: React.FC = () => (
     <Header />
     <Container maxWidth="md">
       <Provider store={store}>
-        <Main>
-          <Route exact path="/" component={TodosIndex} />
-          <Route exact path="/todos/new" component={TodosNew} />
-        </Main>
+        <Route exact path="/" component={TodosIndex} />
+        <Route exact path="/todos/new" component={TodosNew} />
       </Provider>
     </Container>
     <Footer />

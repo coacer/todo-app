@@ -13,25 +13,18 @@ const todosSelector = (state: RootState) => state.todos;
 const TodosIndex: React.FC = () => {
 
   const [isFilterTodos, setIsFilterTodos] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   const allTodos = useSelector(todosSelector);
   const dispatch = useDispatch();
   const filterTodos = allTodos.filter((todo: Todo) => !todo.completed);
   const todos = isFilterTodos ? filterTodos : allTodos;
 
-  // dom生成/更新時にallTodosがゼロだったらフェッチ
   useEffect((): void => {
-    if (allTodos.length > 0) return;
     dispatch(fetchTodos());
   }, []);
 
   const handleChangeToggleFilter = useCallback((): void => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsFilterTodos(!isFilterTodos);
-      setIsLoading(false);
-    }, 1000);
+    setIsFilterTodos(!isFilterTodos);
   }, [isFilterTodos]);
 
   return (
@@ -41,7 +34,7 @@ const TodosIndex: React.FC = () => {
         onChange={handleChangeToggleFilter}
       />
       <ul>
-        {isLoading ? <CircularProgress /> : <TodoList todos={todos} />}
+        <TodoList todos={todos} />
       </ul>
     </>
   );
