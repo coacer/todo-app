@@ -7,7 +7,6 @@ import Container from '@material-ui/core/Container';
 import store from "store";
 import TodosIndex from "pages/todos";
 import TodosNew from "pages/todos/new";
-import Main from "components/layouts/Main";
 import Header from "components/layouts/Header";
 import Footer from "components/layouts/Footer";
 

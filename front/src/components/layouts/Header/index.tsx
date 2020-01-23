@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { NavList } from "interfaces";
+import { AppBar } from '@material-ui/core';
 
 export const navList: NavList[] = [
   {
@@ -25,7 +26,9 @@ const Header: React.FC = () => {
   ));
 
   return (
-    <header>{links}</header>
+    <AppBar color="default">
+      {links}
+    </AppBar>
   );
 };
 
