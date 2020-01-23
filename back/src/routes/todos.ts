@@ -8,9 +8,21 @@ interface Todo {
   completed: boolean;
 }
 
+const { Todo } = models;
+
 router.get('/todos', async (req, res, next) => {
-  const todos: Todo[] = await models.Todo.findAll({});
+  const todos: Todo[] = await Todo.findAll({});
   res.json(todos);
+});
+
+router.delete('/todos/:id', async (req, res, next) => {
+  const filter = {
+    where: {
+      id: req.params.id,
+    },
+  };
+  const todo: Todo = await Todo.destroy(filter);
+  res.json(todo);
 });
 
 export default router;
