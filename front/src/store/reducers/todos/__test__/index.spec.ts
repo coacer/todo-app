@@ -64,7 +64,7 @@ describe('todoReducers', () => {
     expect(resultState).toEqual(expectState);
   });
 
-  it('can delete todo', () => {
+  it('can delete todo', async () => {
     const initialState: Todo[] = [
       {
         id: 1,
@@ -80,12 +80,12 @@ describe('todoReducers', () => {
     const dispatchFake = (action: DelTodoAction) => reducer(initialState, action);
     const expectState = [
       {
-        id: 2,
-        title: "foo",
-        completed: true
+        id: 1,
+        title: "hoge",
+        completed: false
       },
     ];
-    const resultState: Todo[] = dispatchFake(delTodo(1));
+    const resultState = await dispatchFake(delTodo(1));
     expect(expectState).toEqual(resultState);
   });
 

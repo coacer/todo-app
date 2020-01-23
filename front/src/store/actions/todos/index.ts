@@ -90,10 +90,24 @@ export const fetchTodos = (): ThunkAction<
   };
 
 // todoを削除
-export const delTodo = (id: number): DelTodoAction => ({
-  type: ActionTypes.DEL_TODO,
-  payload: id
-});
+export const delTodo = (id: number): ThunkAction<
+    void,
+    Todo[],
+    undefined,
+    DelTodoAction
+  > => async (
+    dispatch: Dispatch<DelTodoAction>
+  ) => {
+    try {
+      const todo: Todo = await axios.delete(`/api/v1/todos/${id}`);
+      dispatch({
+        type: ActionTypes.DEL_TODO,
+        payload: todo.id
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
+};
 
 // todoチェック
 export const checkTodo = (id: number): CheckTodoAction => ({

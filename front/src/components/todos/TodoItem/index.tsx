@@ -6,7 +6,7 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import styled from 'styled-components';
 
 import { Todo } from "interfaces";
-import { delTodo, checkTodo } from "store/actions/todos";
+import { fetchTodos, delTodo, checkTodo } from "store/actions/todos";
 
 interface Props {
   todo: Todo;
@@ -21,6 +21,7 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
   // deleteボタンクリックハンドラ
   const handleClickDelete = useCallback((id: number) => (): void => {
     dispatch(delTodo(id));
+    dispatch(fetchTodos());
   }, [dispatch]);
 
   // checkboxハンドラ
