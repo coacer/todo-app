@@ -8,19 +8,24 @@ import store from "store";
 import TodosIndex from "pages/todos";
 import TodosNew from "pages/todos/new";
 import Header from "components/layouts/Header";
-import Footer from "components/layouts/Footer";
+import styled from 'styled-components';
 
 const App: React.FC = () => (
   <Router>
     <Header />
     <Container maxWidth="md">
-      <Provider store={store}>
-        <Route exact path="/" component={TodosIndex} />
-        <Route exact path="/todos/new" component={TodosNew} />
-      </Provider>
+      <Wrapper>
+        <Provider store={store}>
+          <Route exact path="/" component={TodosIndex} />
+          <Route exact path="/todos/new" component={TodosNew} />
+        </Provider>
+      </Wrapper>
     </Container>
-    <Footer />
   </Router>
 );
+
+const Wrapper = styled.div`
+  padding-top: 50px;
+`;
 
 export default App;

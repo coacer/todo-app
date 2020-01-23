@@ -14,7 +14,7 @@ const initialState: Todo[] = [];
 const todoReducer = (state = initialState, action: TodosAction): Todo[] => {
   switch(action.type) {
     case FETCH:
-      return [...state, ...action.payload];
+      return action.payload;
 
     // case ADD:
     //   return;

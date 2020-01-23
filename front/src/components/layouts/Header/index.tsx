@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { NavList } from "interfaces";
-import { AppBar } from '@material-ui/core';
+import styled from 'styled-components';
 
 export const navList: NavList[] = [
   {
@@ -26,11 +26,36 @@ const Header: React.FC = () => {
   ));
 
   return (
-    <AppBar color="default">
-      {links}
-    </AppBar>
+    <Wrapper>
+      <h1>Todo App</h1>
+      <ListContainer>
+        {links}
+      </ListContainer>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.header`
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #fff6fc;
+  height: 50px;
+  box-shadow: 0px 2px 10px #ccc;
+  h1 {
+    font-size: 20px;
+    color: #494346;
+  }
+`;
+
+const ListContainer = styled.div`
+  padding: 20px;
+  a {
+    padding: 10px;
+    color: #494346;
+    text-decoration: none;
+  }
+`;
 
 export default Header;
 
