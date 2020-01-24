@@ -91,7 +91,7 @@ export const fetchTodos = (): ThunkAction<
 
 
 // todo追加
-export const addTodo = (todo: Todo): ThunkAction<
+export const addTodo = (title: string): ThunkAction<
     void,
     Todo[],
     undefined,
@@ -100,9 +100,10 @@ export const addTodo = (todo: Todo): ThunkAction<
     dispatch: Dispatch<AddTodoAction>
   ) => {
     try {
+      const { data } = await axios.post('/api/v1/todos', { title });
       dispatch({
         type: ActionTypes.ADD_TODO,
-        payload: todo
+        payload: data
       });
     } catch (e) {
       console.log(e.message);

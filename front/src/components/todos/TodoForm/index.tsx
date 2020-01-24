@@ -12,11 +12,7 @@ const TodoForm: React.FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    dispatch(addTodo({
-      id: 1,
-      title,
-      completed: false,
-    }));
+    dispatch(addTodo(title));
     setTitle('');
   };
 
