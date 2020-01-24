@@ -7,6 +7,7 @@ import { fetchTodos } from "store/actions/todos";
 import { Todo } from "interfaces";
 import TodoList from "components/todos/TodoList";
 import SelectFilterBox from "components/todos/SelectFilterBox";
+import TodoForm from 'components/todos/TodoForm';
 
 const todosSelector = (state: RootState) => state.todos;
 const loadSelector = (state: RootState) => state.load;
@@ -23,7 +24,7 @@ const TodosIndex: React.FC = () => {
 
   useEffect((): void => {
     dispatch(fetchTodos());
-  }, []);
+  }, [dispatch]);
 
   const handleChangeToggleFilter = useCallback((): void => {
     setIsFilterTodos(!isFilterTodos);
@@ -31,6 +32,7 @@ const TodosIndex: React.FC = () => {
 
   return (
     <>
+      <TodoForm />
       <SelectFilterBox
         isFilter={isFilterTodos}
         onChange={handleChangeToggleFilter}

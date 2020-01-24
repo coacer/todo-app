@@ -89,6 +89,27 @@ export const fetchTodos = (): ThunkAction<
     }
   };
 
+
+// todo追加
+export const addTodo = (todo: Todo): ThunkAction<
+    void,
+    Todo[],
+    undefined,
+    AddTodoAction
+  > => async (
+    dispatch: Dispatch<AddTodoAction>
+  ) => {
+    try {
+      dispatch({
+        type: ActionTypes.ADD_TODO,
+        payload: todo
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+
 // todoを削除
 export const delTodo = (id: number): ThunkAction<
     void,

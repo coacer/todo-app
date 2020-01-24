@@ -16,8 +16,8 @@ const todoReducer = (state = initialState, action: TodosAction): Todo[] => {
     case FETCH:
       return action.payload;
 
-    // case ADD:
-    //   return;
+    case ADD:
+      return { ...state, ...action.payload };
 
     case DEL:
       const filterTodos: Todo[] = state.filter((todo: Todo) => todo.id !== action.payload);
