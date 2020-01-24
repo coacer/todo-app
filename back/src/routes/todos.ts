@@ -10,12 +10,28 @@ interface Todo {
 
 const { Todo } = models;
 
-router.get('/todos', async (req, res, next) => {
-  const todos: Todo[] = await Todo.findAll({});
-  res.json(todos);
+router.get('/todos', async (req, res) => {
+  try {
+    const todos: Todo[] = await Todo.findAll({});
+    res.json(todos);
+  } catch (e) {
+    console.log(e.message);
+  }
 });
 
-router.delete('/todos/:id', async (req, res, next) => {
+router.post('/todos', async (req, res) => {
+  try {
+    const data = await Todo.create({
+      title: req.body.title,
+      completed: false,
+    });
+    res.json(data);
+  } catch (e) {
+    console.log(e.message);
+  }
+});
+
+router.delete('/todos/:id', async (req, res) => {
   const filter = {
     where: {
       id: req.params.id,
