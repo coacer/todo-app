@@ -17,6 +17,7 @@ const TodosIndex: React.FC = () => {
   const [isFilterTodos, setIsFilterTodos] = useState(false);
 
   const allTodos = useSelector(todosSelector);
+  console.log(allTodos);
   const isLoading = useSelector(loadSelector);
   const dispatch = useDispatch();
   const filterTodos = allTodos.filter((todo: Todo) => !todo.completed);

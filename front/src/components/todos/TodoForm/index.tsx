@@ -1,6 +1,9 @@
 import React, { useState, FormEvent, ChangeEvent } from "react";
+import { useDispatch } from 'react-redux';
+import { addTodo } from 'store/actions/todos';
 
 const TodoForm: React.FC = () => {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -9,7 +12,11 @@ const TodoForm: React.FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    console.log(title);
+    dispatch(addTodo({
+      id: 1,
+      title,
+      completed: false,
+    }));
     setTitle('');
   };
 
